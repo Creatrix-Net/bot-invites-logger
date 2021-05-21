@@ -1,35 +1,35 @@
-from django.shortcuts import render
-from django.views.decorators.http import require_GET
-from .models import *
-from django.http import HttpResponseNotAllowed, HttpResponse, HttpResponsePermanentRedirect
 from django.conf import settings
 from django.db.models import F
+from django.http import (HttpResponse, HttpResponseNotAllowed,
+                         HttpResponsePermanentRedirect)
+from django.shortcuts import render
+from django.views.decorators.http import require_GET
+
+from .models import *
+
 
 # Create your views here.
 @require_GET
 def invite(request):
-    a = request.META.get('HTTP_REFERER')
-    if a and 'discord' in a:
-        try:
-            sitename = request.GET['sitename']
-            password = request.GET['password']
+    try:
+        sitename = request.GET['sitename']
+        password = request.GET['password']
             
-            if password != settings.PASSWORD:
-                return HttpResponseNotAllowed()
+        if password != settings.PASSWORD:
+            return HttpResponseNotAllowed(['GET','POST'])
             
-            ListingSite.objects.update_or_create(
-                sitename=sitename.capitalize(),
+        ListingSite.objects.filter(sitename=sitename).update(
                 invites = F('invites')+1
             )
-            a=ListingSite.objects.filter(sitename=sitename).get()['url']
-            if a != '' or a != None:
-                return HttpResponsePermanentRedirect(a)
-            else:
-                return HttpResponsePermanentRedirect('https://github.com/The-4th-Hokage')
-        except:
-            return HttpResponseNotAllowed()
-    else:
-        return HttpResponseNotAllowed()
+        a=ListingSite.objects.filter(sitename=sitename).get().url
+        if a != '' or a != None:
+            return HttpResponsePermanentRedirect(a)
+        else:
+            return HttpResponsePermanentRedirect('https://github.com/The-4th-Hokage')
+    except:
+        return HttpResponseNotAllowed(['GET','POST'])
+    # else:
+    #     return HttpResponseNotAllowed(['GET','POST'])
 
 @require_GET
 def home(request):
