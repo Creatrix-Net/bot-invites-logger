@@ -10,7 +10,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'logger.apps.LoggerConfig'
+    'invites.apps.LoggerConfig',
     
     'django.contrib.admin',
     'django.contrib.auth',
@@ -27,7 +27,6 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'minatoinvite.urls'
