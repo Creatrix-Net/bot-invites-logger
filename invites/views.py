@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db.models import F
 from django.http import (HttpResponse, HttpResponseNotAllowed,
                          HttpResponsePermanentRedirect)
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views.decorators.http import require_GET
 
 from .models import *
@@ -15,16 +15,11 @@ def invite(request):
         sitename = request.GET['sitename']
         password = request.GET['password']
         if password != settings.PASSWORD:
-                return HttpResponseNotAllowed(['GET','POST'])
-            
-        if sitename == 'Direct From Bot':
-            ListingSite.objects.filter(sitename=sitename).update(
-                    invites = F('invites')+1
-                )
-            return HttpResponsePermanentRedirect('https://discord.com/oauth2/authorize?client_id=779559821162315787&permissions=8&scope=bot%20applications.commands')
+            return HttpResponseNotAllowed(['GET','POST'])
     except:
         return HttpResponseNotAllowed(['GET','POST'])
-    if 'discord' in request.META.get('HTTP_REFERER'):
+    
+    if 'discord' in request.META.get('HTTP_REFERER','None') or sitename == 'Direct From Bot':
         try:   
             ListingSite.objects.filter(sitename=sitename).update(
                     invites = F('invites')+1
