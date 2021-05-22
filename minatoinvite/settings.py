@@ -55,7 +55,7 @@ if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
     PRODUCTION_SERVER = False
-    DEBUG = True
+    DEBUG = False
     SECRET_KEY = '7$xw$^&2rne%#gqm!-n!y$%!7*uahe1cmnc!8hd3j+=syy3=$)'
 
     DATABASES = {
@@ -67,7 +67,7 @@ if os.path.isfile(dotenv_file):
 else:
     PRODUCTION_SERVER = True
     DEBUG = False
-    SECRET_KEY = os.environ['SECRET_KEY']
+    SECRET_KEY = os.environ.get('SECRET_KEY','SECRET_KEY')
     
     DATABASES = {
         'default': {
@@ -113,7 +113,6 @@ USE_TZ = False
 if PRODUCTION_SERVER:
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
-    SECURE_SSL_REDIRECT = True
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True

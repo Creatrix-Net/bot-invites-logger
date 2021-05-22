@@ -5,6 +5,7 @@ from invites.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', home, name="Home"),
+
     url(r'^invite$', invite, name="INVITE RECORDER"),
-    path('', home, name="Home")
 ]
