@@ -14,22 +14,30 @@ def invite(request):
     try:
         sitename = request.GET['sitename']
         password = request.GET['password']
-            
         if password != settings.PASSWORD:
-            return HttpResponseNotAllowed(['GET','POST'])
+                return HttpResponseNotAllowed(['GET','POST'])
             
-        ListingSite.objects.filter(sitename=sitename).update(
-                invites = F('invites')+1
-            )
-        a=ListingSite.objects.filter(sitename=sitename).get().url
-        if a != '' or a != None:
-            return HttpResponsePermanentRedirect(a)
-        else:
-            return HttpResponsePermanentRedirect('https://github.com/The-4th-Hokage')
+        if sitename == 'Direct From Bot':
+            ListingSite.objects.filter(sitename=sitename).update(
+                    invites = F('invites')+1
+                )
+            return HttpResponsePermanentRedirect('https://discord.com/oauth2/authorize?client_id=779559821162315787&permissions=8&scope=bot%20applications.commands')
     except:
         return HttpResponseNotAllowed(['GET','POST'])
-    # else:
-    #     return HttpResponseNotAllowed(['GET','POST'])
+    if 'discord' in request.META.get('HTTP_REFERER'):
+        try:   
+            ListingSite.objects.filter(sitename=sitename).update(
+                    invites = F('invites')+1
+                )
+            a=ListingSite.objects.filter(sitename=sitename).get().url
+            if a != '' or a != None:
+                return HttpResponsePermanentRedirect(a)
+            else:
+                return HttpResponsePermanentRedirect('https://github.com/The-4th-Hokage')
+        except:
+            return HttpResponseNotAllowed(['GET','POST'])
+    else:
+        return HttpResponseNotAllowed(['GET','POST'])
 
 @require_GET
 def home(request):
