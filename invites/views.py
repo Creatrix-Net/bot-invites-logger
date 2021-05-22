@@ -50,6 +50,7 @@ def home(request):
             'VoidBots':getindividualstats('Void Bots'),
             'FatesList':getindividualstats('FatesList'),
             'Topgg':getindividualstats('Top.gg'),
+            'DirectFromBot':getindividualstats('Direct From Bot'),
         }
     )
 
