@@ -55,7 +55,7 @@ if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
     PRODUCTION_SERVER = False
-    DEBUG = True
+    DEBUG = False
     SECRET_KEY = '7$xw$^&2rne%#gqm!-n!y$%!7*uahe1cmnc!8hd3j+=syy3=$)'
 
     DATABASES = {
@@ -67,7 +67,7 @@ if os.path.isfile(dotenv_file):
 else:
     PRODUCTION_SERVER = True
     DEBUG = False
-    SECRET_KEY = os.environ['SECRET_KEY']
+    SECRET_KEY = os.environ.get('SECRET_KEY','SECRET_KEY')
     
     DATABASES = {
         'default': {
