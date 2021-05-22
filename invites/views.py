@@ -19,20 +19,20 @@ def invite(request):
     except:
         return HttpResponseNotAllowed(['GET','POST'])
     
-    if 'discord' in request.META.get('HTTP_REFERER','None') or sitename == 'Direct From Bot':
-        try:   
-            ListingSite.objects.filter(sitename=sitename).update(
+    # if 'discord' in request.META.get('HTTP_REFERER','None') or sitename == 'Direct From Bot':
+    try:   
+        ListingSite.objects.filter(sitename=sitename).update(
                     invites = F('invites')+1
-                )
-            a=ListingSite.objects.filter(sitename=sitename).get().url
-            if a != '' or a != None:
-                return HttpResponsePermanentRedirect(a)
-            else:
-                return HttpResponsePermanentRedirect('https://github.com/The-4th-Hokage')
-        except:
-            return HttpResponseNotAllowed(['GET','POST'])
-    else:
+        )
+        a=ListingSite.objects.filter(sitename=sitename).get().url
+        if a != '' or a != None:
+            return HttpResponsePermanentRedirect(a)
+        else:
+            return HttpResponsePermanentRedirect('https://github.com/The-4th-Hokage')
+    except:
         return HttpResponseNotAllowed(['GET','POST'])
+    # else:
+    #     return HttpResponseNotAllowed(['GET','POST'])
 
 @require_GET
 def home(request):
