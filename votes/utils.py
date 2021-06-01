@@ -5,7 +5,7 @@ from django.conf import settings
 from .discord import request_discord
 from .discord.color import Color
 from .discord.embeds import Embed
-from .discord.meek_moe import meek_api
+from .discord.naruto_api import naruto_api
 
 list_dict = {
     'Top.GG': 'https://top.gg/images/dblnew.png',
@@ -27,10 +27,12 @@ site_dict = {
     'Fates List': f'https://fateslist.xyz/bot/{settings.DISCORDBOTID}',
     'Blade Bot List': f'https://bladebotlist.xyz/bot/{settings.DISCORDBOTID}',
     'Void Bots': f'https://voidbots.net/bot/{settings.DISCORDBOTID}/',
-    'LOCAL': 'https://i.imgur.com/vlBPK30.png'
+    'LOCAL': 'https://i.imgur.com/oQy9h2M.jpeg'
 }
 
 def message_me(voterid: int,site: str):
+    import pytz
+    IST = pytz.timezone('Asia/Kolkata')
     try:
         a = request_discord.discord_api_req(
             '/users/@me/channels',
@@ -44,8 +46,8 @@ def message_me(voterid: int,site: str):
         embed=Embed(
             title=f'Thanks for voting me! on {site}',
             color=Color.random(),
-            description=f'Thanks **<@!{json["recipients"][0]["id"]}>** ({json["recipients"][0]["username"]}#{json["recipients"][0]["discriminator"]}) for voting me! :heart: <:45:778253031523090443>',
-            timestamp=datetime.utcnow()
+            description=f'Thanks **<@!{json["recipients"][0]["id"]}>** ({json["recipients"][0]["username"]}#{json["recipients"][0]["discriminator"]}) for voting me! :heart: <:thumbsupnaruto:848961695715819561><:smilenaruto:848961696047300649>',
+            timestamp=datetime.now(IST)
         )
         embed.set_author(
             name=site,
@@ -61,15 +63,24 @@ def message_me(voterid: int,site: str):
                 'embed':embed.to_dict()
             }
         )
+        naruto_img = naruto_api()
         request_discord.discord_api_req(
-            f'/channels/{a.json()["id"]}/messages',
-            'post',
-            data={
-                'embed':meek_api()
-            }
-        )
+                f'/channels/{a.json()["id"]}/messages',
+                'post',
+                data={
+                    'embed': naruto_img[0]
+                }
+            )
+        if naruto_img[-1]:
+            request_discord.discord_api_req(
+                f'/channels/{a.json()["id"]}/messages',
+                'post',
+                data={
+                    'content': naruto_img[-1]
+                }
+            )
         request_discord.discord_api_req(
-            '/channels/848506780912058389/messages',
+            '/channels/820884883492044861/messages',
             'post',
             data={
                 'embed':embed.to_dict()
@@ -77,7 +88,7 @@ def message_me(voterid: int,site: str):
         )
     except Exception as e:
         request_discord.discord_api_req(
-            '/channels/844539081979592724/messages',
+            '/channels/830366314761420821/messages',
             'post',
             data={
                 'content': f'Error at vote webhook in **{e}**'

@@ -1,6 +1,6 @@
+import ast
 import os
 from pathlib import Path
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -11,6 +11,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'invites.apps.LoggerConfig',
+    'votes.apps.VotesConfig',
     
     'django.contrib.admin',
     'django.contrib.auth',
@@ -55,7 +56,7 @@ if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
     PRODUCTION_SERVER = False
-    DEBUG = False
+    DEBUG = True
     SECRET_KEY = '7$xw$^&2rne%#gqm!-n!y$%!7*uahe1cmnc!8hd3j+=syy3=$)'
 
     DATABASES = {
@@ -66,9 +67,17 @@ if os.path.isfile(dotenv_file):
     }
 else:
     import dj_database_url
+    
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+    EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    ADMINS = [('dhruva', os.environ['EMAIL_HOST_USER'])]
 
     PRODUCTION_SERVER = True
-    DEBUG = False
+    DEBUG = ast.literal_eval(os.environ.get('DEBUG', 'False'))
     SECRET_KEY = os.environ.get('SECRET_KEY','SECRET_KEY')
     
     DATABASES = {'default': dj_database_url.config(
@@ -129,4 +138,6 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 PASSWORD = os.environ.get('PASSWORD')
-
+TOKEN = os.environ['TOKEN']
+DISCORDBOTID = os.environ.get('DISCORDBOTID',779559821162315787)
+LOCAL = ast.literal_eval(os.environ.get('LOCAL', 'False'))
