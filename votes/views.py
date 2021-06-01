@@ -18,14 +18,8 @@ def message(request):
 
 @require_POST
 def topgg(request):
-    print(request)
-    print(request.POST)
-    print(request.body)
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
-        try:
-            userid = request.POST.get('user')
-        except:
-             userid = ast.literal_eval(request.body.decode("utf-8")).get('user')
+        userid = json.loads(request.body.decode("utf-8")).get('user')
         message_me(int(userid), 'Top.GG')
         return HttpResponse('Thanks')
     else:
