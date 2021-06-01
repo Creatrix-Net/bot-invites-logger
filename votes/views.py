@@ -18,6 +18,9 @@ def message(request):
 
 @require_POST
 def topgg(request):
+    print(request)
+    print(request.POST)
+    print(request.body)
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
         try:
             userid = request.POST.get('user')
