@@ -25,7 +25,6 @@ def topgg(request):
     else:
         return HttpResponseNotAllowed(['GET','POST'])
 
-@require_POST
 def discordbotlist(request):
     if request.META.get('HTTP_AUTHORIZATION') or request.headers.get('Authorization') == settings.PASSWORD:
         userid = json.loads(request.body.decode("utf-8")).get('id')
