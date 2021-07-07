@@ -12,14 +12,13 @@ from .models import *
 @require_GET
 def invite(request):
     try:
-        sitename = request.GET['sitename']
-        password = request.GET['password']
+        password, sitename = request.GET['state'].split('/')
+        print(str(password)== settings.PASSWORD, password, settings.PASSWORD)
         if password != settings.PASSWORD:
             return HttpResponseNotAllowed(['GET','POST'])
     except:
         return HttpResponseNotAllowed(['GET','POST'])
-    
-    if 'discord' in request.META.get('HTTP_REFERER','None') or sitename == 'Direct From Bot':
+    if request.GET.get('code') or sitename == 'Direct From Bot':
         try:   
             ListingSite.objects.filter(sitename=sitename).update(
                     invites = F('invites')+1
