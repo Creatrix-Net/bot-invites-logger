@@ -29,7 +29,9 @@ def invite(request):
             else:
                 return HttpResponsePermanentRedirect('https://github.com/The-4th-Hokage')
         except:
-            return HttpResponseNotAllowed(['GET','POST'])
+            site_listing = ListingSite(sitename=sitename, invites=1)
+            site_listing.save()
+            return HttpResponsePermanentRedirect('https://github.com/The-4th-Hokage')
     else:
         return HttpResponseNotAllowed(['GET','POST'])
 
