@@ -18,7 +18,7 @@ def invite(request):
             return HttpResponseNotAllowed(['GET','POST'])
     except:
         return HttpResponseNotAllowed(['GET','POST'])
-    if request.GET.get('code') or sitename == 'Direct From Bot':
+    if request.GET.get('code') or sitename.lower() == 'Direct From Bot'.lower():
         try:   
             ListingSite.objects.filter(sitename=sitename).update(
                     invites = F('invites')+1
