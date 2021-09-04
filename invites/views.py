@@ -27,42 +27,25 @@ def invite(request):
             if a != '' or a != None:
                 return HttpResponsePermanentRedirect(a)
             else:
-                return HttpResponsePermanentRedirect('https://github.com/The-4th-Hokage')
+                return HttpResponsePermanentRedirect('https://minato-namikaze.readthedocs.io/')
         except:
             site_listing = ListingSite(sitename=sitename, invites=1)
             site_listing.save()
-            return HttpResponsePermanentRedirect('https://github.com/The-4th-Hokage')
+            return HttpResponsePermanentRedirect('https://minato-namikaze.readthedocs.io/')
     else:
         return HttpResponseNotAllowed(['GET','POST'])
 
 @require_GET
 def home(request):
+    a=ListingSite.objects.iterator()
+    l1=[['Listing Sites', 'No of Invites'],]
+    l = [[i.sitename,i.invites] for i in a]
+    l1.extend(l)
     return render(
         request,
         'index.html',
         {
-            'DiscordBotsGG':getindividualstats('Discord Bots GG'),
-            'DiscordBotList':getindividualstats('Discord Bot List'),
-            'DiscordListSpace':getindividualstats('Discord List Space'),
-            'BotsForDiscord':getindividualstats('Bots For Discord'),
-            'DiscordBoats':getindividualstats('Discord Boats'),
-            'SpaceBotList':getindividualstats('Space Bot List'),
-            'BladeBotList':getindividualstats('Blade Bot List'),
-            'VoidBots':getindividualstats('Void Bots'),
-            'FatesList':getindividualstats('FatesList'),
-            'Topgg':getindividualstats('Top.gg'),
-            'DirectFromBot':getindividualstats('Direct From Bot'),
+            'invite':l1,
         }
     )
 
-@require_GET
-def get_invite_stats(request):
-    return invitestatsfnc()
-
-def invitestatsfnc():
-    a=ListingSite.objects.iterator()
-    l = [[str(i.sitename), i.invites] for i in a]
-    return l
-
-def getindividualstats(name):
-    return ListingSite.objects.filter(sitename=name).get().invites

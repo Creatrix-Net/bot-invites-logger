@@ -57,16 +57,7 @@ if os.path.isfile(dotenv_file):
     PRODUCTION_SERVER = False
     DEBUG = True
     SECRET_KEY = '7$xw$^&2rne%#gqm!-n!y$%!7*uahe1cmnc!8hd3j+=syy3=$)'
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-else:
-    import dj_database_url
-    
+else:    
     EMAIL_HOST = 'smtp.gmail.com'
     EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
     EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
@@ -79,12 +70,23 @@ else:
     DEBUG = ast.literal_eval(os.environ.get('DEBUG', 'False'))
     SECRET_KEY = os.environ.get('SECRET_KEY','SECRET_KEY')
     
-    DATABASES = {'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL'))}
     MIDDLEWARE = [MIDDLEWARE[0]] + \
         ['whitenoise.middleware.WhiteNoiseMiddleware']+MIDDLEWARE[1:]
     INSTALLED_APPS = INSTALLED_APPS[0:-1] + \
         ['whitenoise.runserver_nostatic',]+[INSTALLED_APPS[-1]]
+    
+if os.getenv('DATABASE_URL'):
+    import dj_database_url
+    DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
+    
     
 
 
