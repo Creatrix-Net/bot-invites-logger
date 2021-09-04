@@ -96,3 +96,7 @@ def message_me(voterid: int,site: str):
                 'content': f'Error at vote webhook in **{e}**'
             }
         )
+
+
+def giveroles(guildid, roleid):
+    

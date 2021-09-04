@@ -10,5 +10,6 @@ urlpatterns = [
     path('discordlistspace/', discordlistspace, name="Discordlist Space"),
     path('fateslist/', fateslist, name="Fates List"),
     path('bladebotlist/', bladebotlist, name="Blade Bot List"),
-    path('voidbots/',voidbots, name="Void Bots")
+    path('voidbots/',voidbots, name="Void Bots"),
+    path('infinity/',voidbots, name="Infinity")
 ]
