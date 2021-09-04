@@ -99,4 +99,4 @@ def message_me(voterid: int,site: str):
 
 
 def giveroles(guildid, roleid):
-    
+    pass
