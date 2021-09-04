@@ -11,5 +11,5 @@ urlpatterns = [
     path('fateslist/', fateslist, name="Fates List"),
     path('bladebotlist/', bladebotlist, name="Blade Bot List"),
     path('voidbots/',voidbots, name="Void Bots"),
-    path('infinity/',voidbots, name="Infinity")
+    path('infinity/',infinity, name="Infinity")
 ]
