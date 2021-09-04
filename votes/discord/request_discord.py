@@ -4,7 +4,7 @@ from django.conf import settings
 
 def discord_api_req(
     path: str,
-    method: str = 'post' or 'get',
+    method: str = 'post' or 'get' or 'put',
     data: dict=None, 
     content_type: str = 'application/json'
 ):
@@ -15,13 +15,20 @@ def discord_api_req(
         'Authorization': f'Bot {settings.TOKEN}',
         'Content-Type': content_type
     }
-    if method == 'post':
+    if method == 'put':
+        request = requests.put(
+            base_api+path,
+            headers=headers,
+            data=data
+        )
+        print(base_api+path, headers, data)
+    elif method == 'post':
         request = requests.post(
             base_api+path,
             headers=headers,
             json=data
         )
-    if method == 'get':
+    elif method == 'get':
         if data:
             request = requests.get(
                 base_api+path,

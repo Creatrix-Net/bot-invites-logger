@@ -6,6 +6,7 @@ from django.http import HttpResponse, HttpResponseNotAllowed
 from django.views.decorators.http import require_POST
 
 from .utils import message_me
+from .discord import discord_api_req
 
 
 # Create your views here.
@@ -68,6 +69,7 @@ def fateslist(request):
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
         userid = json.loads(request.body.decode("utf-8")).get('id')
         message_me(int(userid), 'Fates List')
+        discord_api_req(f'/guilds/789934742128558080/members/{int(userid)}/roles/883605453806919750','put')
         return HttpResponse('Thanks')
     else:
         return HttpResponseNotAllowed(['GET','POST'])
