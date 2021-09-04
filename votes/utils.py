@@ -16,6 +16,7 @@ list_dict = {
     'Fates List': 'https://fateslist.xyz/static/botlisticon.webp',
     'Blade Bot List': 'https://bladebotlist.xyz/img/logo.png',
     'Void Bots': 'https://voidbots.net/assets/img/logo.png',
+    'Infinity': 'https://i.imgur.com/d7rG4HS.png',
     'LOCAL': 'https://i.imgur.com/vlBPK30.png'
 }
 site_dict = {
@@ -27,6 +28,7 @@ site_dict = {
     'Fates List': f'https://fateslist.xyz/bot/{settings.DISCORDBOTID}',
     'Blade Bot List': f'https://bladebotlist.xyz/bot/{settings.DISCORDBOTID}',
     'Void Bots': f'https://voidbots.net/bot/{settings.DISCORDBOTID}/',
+    'Infinity': f'https://botlist.site/bots/{settings.DISCORDBOTID}',
     'LOCAL': 'https://i.imgur.com/oQy9h2M.jpeg'
 }
 

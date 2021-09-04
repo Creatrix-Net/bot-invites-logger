@@ -92,3 +92,12 @@ def voidbots(request):
         return HttpResponse('Thanks')
     else:
         return HttpResponseNotAllowed(['GET','POST'])
+
+@require_POST
+def infinity(request):
+    if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
+        userid = request.POST.get('user')  or ast.literal_eval(request.body.decode("utf-8")).get('user')
+        message_me(int(userid), 'Infinity')
+        return HttpResponse('Thanks')
+    else:
+        return HttpResponseNotAllowed(['GET','POST'])
