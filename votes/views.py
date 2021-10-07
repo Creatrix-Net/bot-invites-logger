@@ -4,12 +4,13 @@ import json
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseNotAllowed
 from django.views.decorators.http import require_POST
+from asgiref.sync import sync_to_async
 
 from .utils import message_me
 from .discord import discord_api_req
 
 
-# Create your views here.
+@sync_to_async
 def message(request):
     if settings.LOCAL:
         message_me(571889108046184449, 'LOCAL')
@@ -17,6 +18,7 @@ def message(request):
     else:
         return HttpResponseNotAllowed(['GET','POST'])
 
+@sync_to_async
 @require_POST
 def topgg(request):
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
@@ -26,6 +28,7 @@ def topgg(request):
     else:
         return HttpResponseNotAllowed(['GET','POST'])
 
+@sync_to_async
 def discordbotlist(request):
     if request.META.get('HTTP_AUTHORIZATION') or request.headers.get('Authorization') == settings.PASSWORD:
         userid = json.loads(request.body.decode("utf-8")).get('id')
@@ -34,6 +37,7 @@ def discordbotlist(request):
     else:
         return HttpResponseNotAllowed(['GET','POST'])
 
+@sync_to_async
 @require_POST
 def discordboats(request):
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
@@ -46,6 +50,7 @@ def discordboats(request):
     else:
         return HttpResponseNotAllowed(['GET','POST'])
 
+@sync_to_async
 @require_POST
 def botsfordiscord(request):
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
@@ -55,6 +60,7 @@ def botsfordiscord(request):
     else:
         return HttpResponseNotAllowed(['GET','POST'])
 
+@sync_to_async
 @require_POST
 def discordlistspace(request):
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.TOKEN:
@@ -64,6 +70,7 @@ def discordlistspace(request):
     else:
         return HttpResponseNotAllowed(['GET','POST'])
 
+@sync_to_async
 @require_POST
 def fateslist(request):
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
@@ -73,6 +80,7 @@ def fateslist(request):
     else:
         return HttpResponseNotAllowed(['GET','POST'])
 
+@sync_to_async
 @require_POST
 def bladebotlist(request):
     if request.META.get('HTTP_AUTHORIZATION') or request.headers.get('Authorization') or request.headers.get('Password') or request.headers.get('password') == settings.PASSWORD:
@@ -85,6 +93,7 @@ def bladebotlist(request):
     else:
         return HttpResponseNotAllowed(['GET','POST'])
 
+@sync_to_async
 @require_POST
 def voidbots(request):
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
@@ -94,6 +103,7 @@ def voidbots(request):
     else:
         return HttpResponseNotAllowed(['GET','POST'])
 
+@sync_to_async
 @require_POST
 def infinity(request):
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:

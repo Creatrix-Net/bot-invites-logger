@@ -4,16 +4,16 @@ from django.http import (HttpResponse, HttpResponseNotAllowed,
                          HttpResponsePermanentRedirect)
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_GET
+from asgiref.sync import sync_to_async
 
 from .models import *
 
 
-# Create your views here.
+@sync_to_async
 @require_GET
 def invite(request):
     try:
         password, sitename = request.GET['state'].split('/')
-        print(str(password)== settings.PASSWORD, password, settings.PASSWORD)
         if password != settings.PASSWORD:
             return HttpResponseNotAllowed(['GET','POST'])
     except:
@@ -35,6 +35,7 @@ def invite(request):
     else:
         return HttpResponseNotAllowed(['GET','POST'])
 
+@sync_to_async
 @require_GET
 def home(request):
     a=ListingSite.objects.iterator()
