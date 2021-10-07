@@ -27,11 +27,11 @@ def invite(request):
             if a != '' or a != None:
                 return HttpResponsePermanentRedirect(a)
             else:
-                return HttpResponsePermanentRedirect('https://minato-namikaze.readthedocs.io/')
+                return HttpResponsePermanentRedirect(settings.WEBSITE)
         except:
             site_listing = ListingSite(sitename=sitename, invites=1)
             site_listing.save()
-            return HttpResponsePermanentRedirect('https://minato-namikaze.readthedocs.io/')
+            return HttpResponsePermanentRedirect(settings.WEBSITE)
     else:
         return HttpResponseNotAllowed(['GET','POST'])
 

@@ -13,7 +13,7 @@ from .discord import discord_api_req
 @sync_to_async
 def message(request):
     if settings.LOCAL:
-        message_me(571889108046184449, 'LOCAL')
+        message_me(settings.DISCORD_ID, 'LOCAL')
         return HttpResponse('Thanks')
     else:
         return HttpResponseNotAllowed(['GET','POST'])
