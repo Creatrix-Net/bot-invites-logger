@@ -22,14 +22,12 @@ class LogEntryAdmin(admin.ModelAdmin):
                 "%d log was successfully deleted.",
                 "%d logs were successfully deleted.",
                 len(queryset),
-            )
-            % int(len(queryset)),
+            ) % int(len(queryset)),
             messages.SUCCESS,
         )
 
     delete_admin_logs.short_description = (
-        "Delete the selected ADMIN Logs without sticking"
-    )
+        "Delete the selected ADMIN Logs without sticking")
 
     actions = [delete_admin_logs]
 
