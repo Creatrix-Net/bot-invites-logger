@@ -27,6 +27,7 @@ def discord_api_req(
                 headers=headers,
             )
         else:
-            request = requests.get(
-                base_api + path, headers=headers, params=data)
+            request = requests.get(base_api + path,
+                                   headers=headers,
+                                   params=data)
     return request

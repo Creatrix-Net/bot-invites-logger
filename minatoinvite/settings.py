@@ -70,24 +70,19 @@ else:
     DEBUG = ast.literal_eval(os.environ.get("DEBUG", "False"))
     SECRET_KEY = os.environ.get("SECRET_KEY", "SECRET_KEY")
 
-    MIDDLEWARE = (
-        [MIDDLEWARE[0]]
-        + ["whitenoise.middleware.WhiteNoiseMiddleware"]
-        + MIDDLEWARE[1:]
-    )
-    INSTALLED_APPS = (
-        INSTALLED_APPS[0:-1]
-        + [
-            "whitenoise.runserver_nostatic",
-        ]
-        + [INSTALLED_APPS[-1]]
-    )
+    MIDDLEWARE = ([MIDDLEWARE[0]] +
+                  ["whitenoise.middleware.WhiteNoiseMiddleware"] +
+                  MIDDLEWARE[1:])
+    INSTALLED_APPS = (INSTALLED_APPS[0:-1] + [
+        "whitenoise.runserver_nostatic",
+    ] + [INSTALLED_APPS[-1]])
 
 if os.getenv("DATABASE_URL"):
     import dj_database_url
 
-    DATABASES = {"default": dj_database_url.config(
-        default=os.getenv("DATABASE_URL"))}
+    DATABASES = {
+        "default": dj_database_url.config(default=os.getenv("DATABASE_URL"))
+    }
 else:
     DATABASES = {
         "default": {
@@ -101,16 +96,20 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
