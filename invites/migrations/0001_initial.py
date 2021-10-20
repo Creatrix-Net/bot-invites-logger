@@ -7,17 +7,24 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='ListingSite',
+            name="ListingSite",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('sitename', models.CharField(max_length=250, unique=True)),
-                ('url', models.URLField(blank=True, null=True, unique=True)),
-                ('invites', models.PositiveBigIntegerField(default=0)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("sitename", models.CharField(max_length=250, unique=True)),
+                ("url", models.URLField(blank=True, null=True, unique=True)),
+                ("invites", models.PositiveBigIntegerField(default=0)),
             ],
         ),
     ]

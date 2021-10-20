@@ -21,13 +21,13 @@ def invite(request):
             return HttpResponseNotAllowed(["GET", "POST"])
     except:
         return HttpResponseNotAllowed(["GET", "POST"])
-    if request.GET.get(
-            "code") or sitename.lower() == "Direct From Bot".lower():
+    if request.GET.get("code") or sitename.lower() == "Direct From Bot".lower():
         try:
             ListingSite.objects.filter(sitename=sitename).update(
-                invites=F("invites") + 1)
+                invites=F("invites") + 1
+            )
             a = ListingSite.objects.filter(sitename=sitename).get().url
-            if a != "" or a is not None:
+            if a != "" or a != None:
                 return HttpResponsePermanentRedirect(a)
             else:
                 return HttpResponsePermanentRedirect(settings.WEBSITE)
