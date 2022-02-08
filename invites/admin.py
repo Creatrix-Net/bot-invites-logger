@@ -25,13 +25,14 @@ class InviteAdmin(admin.ModelAdmin):
             messages.SUCCESS,
         )
 
-    reset_invite.short_description = ("Reset Invites")
+    reset_invite.short_description = "Reset Invites"
 
     actions = [reset_invite]
 
 
 @admin.register(LogEntry)
 class LogEntryAdmin(admin.ModelAdmin):
+
     def delete_admin_logs(self, request, queryset):
         queryset.delete()
 
