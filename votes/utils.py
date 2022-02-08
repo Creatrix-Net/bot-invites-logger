@@ -10,8 +10,7 @@ from .discord.naruto_api import naruto_api
 list_dict = {
     "Top.GG": "https://top.gg/images/dblnew.png",
     "Discordlist Space": "https://discordlist.space/img/apple-touch-icon.png",
-    "Bots For Discord":
-    "https://botsfordiscord.com/img/favicons/apple-touch-icon-57x57.png",
+    "Bots For Discord": "https://botsfordiscord.com/img/favicons/apple-touch-icon-57x57.png",
     "Discord Bot List": "https://discordbotlist.com/ms-icon-144x144.png",
     "Discord Boats": "https://discord.boats/apple-icon-57x57.png",
     "Fates List": "https://fateslist.xyz/static/botlisticon.webp",
@@ -22,12 +21,9 @@ list_dict = {
 }
 site_dict = {
     "Top.GG": f"https://top.gg/bot/{settings.DISCORDBOTID}",
-    "Discordlist Space":
-    f"https://discordlist.space/bot/{settings.DISCORDBOTID}",
-    "Bots For Discord":
-    f"https://botsfordiscord.com/bot/{settings.DISCORDBOTID}",
-    "Discord Bot List":
-    f"https://discordbotlist.com/bots/{settings.DISCORDBOTID}",
+    "Discordlist Space": f"https://discordlist.space/bot/{settings.DISCORDBOTID}",
+    "Bots For Discord": f"https://botsfordiscord.com/bot/{settings.DISCORDBOTID}",
+    "Discord Bot List": f"https://discordbotlist.com/bots/{settings.DISCORDBOTID}",
     "Discord Boats": f"https://discord.boats/bot/{settings.DISCORDBOTID}",
     "Fates List": f"https://fateslist.xyz/bot/{settings.DISCORDBOTID}",
     "Blade Bot List": f"https://bladebotlist.xyz/bot/{settings.DISCORDBOTID}",

@@ -7,14 +7,33 @@ from django.utils.translation import ngettext
 from .models import *
 
 
-# Register your models here.
+@admin.register(ListingSite)
 class InviteAdmin(admin.ModelAdmin):
-    list_display = ("sitename", "invites")
+    list_display = search_fields = ("sitename", "invites")
+    list_per_page = 100
+
+    def reset_invite(self, request, queryset):
+        queryset.update(invites=0)
+
+        self.message_user(
+            request,
+            ngettext(
+                "%d invite was successfully reset.",
+                "%d invites were successfully reset.",
+                len(queryset),
+            ) % int(len(queryset)),
+            messages.SUCCESS,
+        )
+
+    reset_invite.short_description = ("Reset Invites")
+
+    actions = [reset_invite]
 
 
+@admin.register(LogEntry)
 class LogEntryAdmin(admin.ModelAdmin):
     def delete_admin_logs(self, request, queryset):
-        querysetmsg = queryset.delete()
+        queryset.delete()
 
         self.message_user(
             request,
@@ -32,8 +51,6 @@ class LogEntryAdmin(admin.ModelAdmin):
     actions = [delete_admin_logs]
 
 
-admin.site.register(ListingSite, InviteAdmin)
-admin.site.register(LogEntry, LogEntryAdmin)
 admin.site.unregister(Group)
 
 admin.site.site_header = (

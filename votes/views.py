@@ -6,7 +6,6 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseNotAllowed
 from django.views.decorators.http import require_POST
 
-from .discord import discord_api_req
 from .utils import message_me
 
 

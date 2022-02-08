@@ -143,7 +143,8 @@ MEDIA_URL = "/media/"
 
 PASSWORD = os.environ.get("PASSWORD")
 TOKEN = os.environ["TOKEN"]
-DISCORDBOTID = os.environ.get("DISCORDBOTID", 779559821162315787)
+DISCORDBOTID = os.environ.get("DISCORDBOTID", 935242576343224352)
 LOCAL = ast.literal_eval(os.environ.get("LOCAL", "False").capitalize())
-DISCORD_ID = os.environ.get("DISCORD_ID", 571889108046184449)
+DISCORD_ID = os.environ.get("DISCORD_ID", 887549958931247137)
+CHANNEL_ID = os.environ.get("CHANNEL_ID",920190310942908512)
 WEBSITE = os.environ.get("WEBSITE", "https://minato-namikaze.readthedocs.io/")
