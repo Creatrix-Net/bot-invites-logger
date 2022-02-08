@@ -1,12 +1,12 @@
 from asgiref.sync import sync_to_async
 from django.conf import settings
+from django.views.decorators.cache import cache_page
 from django.db.models import F
 from django.http import (
-    HttpResponse,
     HttpResponseNotAllowed,
     HttpResponsePermanentRedirect,
 )
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.views.decorators.http import require_GET
 
 from .models import *
@@ -41,12 +41,12 @@ def invite(request):
 
 @sync_to_async
 @require_GET
+@cache_page(60 * 15)
 def home(request):
-    a = ListingSite.objects.iterator()
     l1 = [
         ["Listing Sites", "No of Invites"],
     ]
-    l = [[i.sitename, i.invites] for i in a]
+    l = [[i.sitename, i.invites] for i in  ListingSite.objects.iterator()]
     l1.extend(l)
     return render(
         request,

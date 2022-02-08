@@ -1,0 +1,12 @@
+﻿aiohttp
+dj-database-url
+Django
+gunicorn
+psycopg2
+python-dotenv
+pytz
+requests
+uvicorn
+whitenoise
+yarl
+uvloop; sys_platform != "win32"
