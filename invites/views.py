@@ -27,7 +27,7 @@ def invite(request):
             ListingSite.objects.filter(sitename=sitename).update(
                 invites=F("invites") + 1)
             a = ListingSite.objects.filter(sitename=sitename).get().url
-            if a != "" or a != None:
+            if a != "" or a is not None:
                 return HttpResponsePermanentRedirect(a)
             else:
                 return HttpResponsePermanentRedirect(settings.WEBSITE)
