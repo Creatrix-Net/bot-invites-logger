@@ -1,12 +1,9 @@
 from asgiref.sync import sync_to_async
 from django.conf import settings
-from django.views.decorators.cache import cache_page
 from django.db.models import F
-from django.http import (
-    HttpResponseNotAllowed,
-    HttpResponsePermanentRedirect,
-)
+from django.http import HttpResponseNotAllowed, HttpResponsePermanentRedirect
 from django.shortcuts import render
+from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_GET
 
 from .models import *
@@ -46,7 +43,7 @@ def home(request):
     l1 = [
         ["Listing Sites", "No of Invites"],
     ]
-    l = [[i.sitename, i.invites] for i in  ListingSite.objects.iterator()]
+    l = [[i.sitename, i.invites] for i in ListingSite.objects.iterator()]
     l1.extend(l)
     return render(
         request,
