@@ -116,8 +116,7 @@ def bladebotlist(request):
 @sync_to_async
 @require_POST
 def voidbots(request):
-    if (request.META["HTTP_AUTHORIZATION"]
-            or request.headers.get("Authorization") == settings.PASSWORD):
+    if (request.META["HTTP_AUTHORIZATION"] or request.headers.get("Authorization") == settings.PASSWORD):
         userid = request.POST.get("user") or ast.literal_eval(
             request.body.decode("utf-8")).get("user")
         message_me(int(userid), "Void Bots")
@@ -129,12 +128,26 @@ def voidbots(request):
 @sync_to_async
 @require_POST
 def infinity(request):
-    if (request.META["HTTP_AUTHORIZATION"]
-            or request.headers.get("Authorization") == settings.PASSWORD):
+    if (request.META["HTTP_AUTHORIZATION"] or request.headers.get("Authorization") == settings.PASSWORD):
         userid = (request.POST.get("userID") or ast.literal_eval(
             request.body.decode("utf-8")).get("userID")
             or json.loads(request.body.decode("utf-8")).get("userID"))
         message_me(int(userid), "Infinity")
+        return HttpResponse("Thanks")
+    else:
+        return HttpResponseNotAllowed(["GET", "POST"])
+
+
+@sync_to_async
+@require_POST
+def discordlabs(request):
+    if (request.META["HTTP_AUTHORIZATION"] or request.headers.get("Authorization") == settings.PASSWORD):
+        userid = (
+            request.POST.get("uid") or 
+            ast.literal_eval(request.body.decode("utf-8")).get("uid") or 
+            json.loads(request.body.decode("utf-8")).get("uid")
+        )
+        message_me(int(userid), "Discord Labs")
         return HttpResponse("Thanks")
     else:
         return HttpResponseNotAllowed(["GET", "POST"])

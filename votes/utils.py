@@ -6,40 +6,39 @@ from .discord import request_discord
 from .discord.color import Color
 from .discord.embeds import Embed
 from .discord.naruto_api import naruto_api
+import pytz
 
 list_dict = {
     "Top.GG": "https://top.gg/images/dblnew.png",
     "Discordlist Space": "https://discordlist.space/img/apple-touch-icon.png",
-    "Bots For Discord":
-    "https://botsfordiscord.com/img/favicons/apple-touch-icon-57x57.png",
+    "Bots For Discord": "https://discords.com/bots/img/favicons/apple-touch-icon-57x57.png",
     "Discord Bot List": "https://discordbotlist.com/ms-icon-144x144.png",
     "Discord Boats": "https://discord.boats/apple-icon-57x57.png",
     "Fates List": "https://fateslist.xyz/static/botlisticon.webp",
     "Blade Bot List": "https://bladebotlist.xyz/img/logo.png",
     "Void Bots": "https://voidbots.net/assets/img/logo.png",
     "Infinity": "https://i.imgur.com/d7rG4HS.png",
+    "Discord Labs":"https://cdn.discordlabs.org/logo200.png",
+
     "LOCAL": "https://i.imgur.com/vlBPK30.png",
 }
 site_dict = {
     "Top.GG": f"https://top.gg/bot/{settings.DISCORDBOTID}",
-    "Discordlist Space":
-    f"https://discordlist.space/bot/{settings.DISCORDBOTID}",
-    "Bots For Discord":
-    f"https://botsfordiscord.com/bot/{settings.DISCORDBOTID}",
-    "Discord Bot List":
-    f"https://discordbotlist.com/bots/{settings.DISCORDBOTID}",
+    "Discordlist Space": f"https://discordlist.space/bot/{settings.DISCORDBOTID}",
+    "Discords": f"https://discords.com/bots/bot/{settings.DISCORDBOTID}",
+    "Discord Bot List": f"https://discordbotlist.com/bots/{settings.DISCORDBOTID}",
     "Discord Boats": f"https://discord.boats/bot/{settings.DISCORDBOTID}",
     "Fates List": f"https://fateslist.xyz/bot/{settings.DISCORDBOTID}",
     "Blade Bot List": f"https://bladebotlist.xyz/bot/{settings.DISCORDBOTID}",
     "Void Bots": f"https://voidbots.net/bot/{settings.DISCORDBOTID}/",
     "Infinity": f"https://botlist.site/bots/{settings.DISCORDBOTID}",
+    "Discord Labs":f"https://bots.discordlabs.org/bot/{settings.DISCORDBOTID}",
+
     "LOCAL": "https://i.imgur.com/oQy9h2M.jpeg",
 }
 
 
 def message_me(voterid: int, site: str):
-    import pytz
-
     IST = pytz.timezone("Asia/Kolkata")
     try:
         a = request_discord.discord_api_req(
@@ -75,13 +74,13 @@ def message_me(voterid: int, site: str):
                 data={"content": naruto_img[-1]},
             )
         request_discord.discord_api_req(
-            "/channels/820884883492044861/messages",
+            f"/channels/{settings.CHANNEL_ID}/messages",
             "post",
             data={"embed": embed.to_dict()},
         )
     except Exception as e:
         request_discord.discord_api_req(
-            "/channels/830366314761420821/messages",
+            f"/channels/{settings.CHANNEL_ID}/messages",
             "post",
             data={"content": f"Error at vote webhook in **{e}**"},
         )

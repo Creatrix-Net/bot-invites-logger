@@ -8,11 +8,10 @@ from .embeds import Embed
 
 def naruto_api():
     e = Embed(
-        title="Arigato! <:smilenaruto:848961696047300649>",
+        title="Arigato! <:uzumaki:940993645593632808>",
         color=Color.random(),
     )
-    imageslistdir = Path(__file__).resolve(
-        strict=True).parent / join("images_list.txt")
+    imageslistdir = Path(__file__).resolve(strict=True).parent / join("images_list.txt")
     filepointer = open(imageslistdir)
     imageslist = filepointer.readlines()
     shuffle(imageslist)
