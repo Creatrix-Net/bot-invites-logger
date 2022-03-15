@@ -12,5 +12,5 @@ urlpatterns = [
     path("bladebotlist/", bladebotlist, name="Blade Bot List"),
     path("voidbots/", voidbots, name="Void Bots"),
     path("infinity/", infinity, name="Infinity"),
-    path("discordlabs/", infinity, name="Discord Labs"),
+    path("discordlabs/", discordlabs, name="Discord Labs"),
 ]
