@@ -25,7 +25,7 @@ list_dict = {
 site_dict = {
     "Top.GG": f"https://top.gg/bot/{settings.DISCORDBOTID}",
     "Discordlist Space": f"https://discordlist.space/bot/{settings.DISCORDBOTID}",
-    "Discords": f"https://discords.com/bots/bot/{settings.DISCORDBOTID}",
+    "Bots For Discord": f"https://discords.com/bots/bot/{settings.DISCORDBOTID}",
     "Discord Bot List": f"https://discordbotlist.com/bots/{settings.DISCORDBOTID}",
     "Discord Boats": f"https://discord.boats/bot/{settings.DISCORDBOTID}",
     "Fates List": f"https://fateslist.xyz/bot/{settings.DISCORDBOTID}",
