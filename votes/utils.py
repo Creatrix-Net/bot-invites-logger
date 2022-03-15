@@ -1,5 +1,5 @@
 from datetime import datetime
-
+import traceback
 from django.conf import settings
 
 from .discord import request_discord
@@ -79,8 +79,9 @@ def message_me(voterid: int, site: str):
             data={"embed": embed.to_dict()},
         )
     except Exception as e:
+        print(e)
         request_discord.discord_api_req(
             f"/channels/{settings.CHANNEL_ID}/messages",
             "post",
-            data={"content": f"Error at vote webhook in **{e}**"},
+            data={"content": f"Error at vote webhook in **{e}**\n```\n{str(traceback.format_exc()).encode()}\n```"},
         )
