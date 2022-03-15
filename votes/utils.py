@@ -57,18 +57,11 @@ def message_me(voterid: int, site: str):
 
         naruto_img = naruto_api()
         #DM
-        if naruto_img[-1]:
-            request_discord.discord_api_req(
-                f'/channels/{a.json()["id"]}/messages',
-                "post",
-                data={"embeds": [embed.to_dict(), naruto_img[0]]},
-            )
-        else:
-            request_discord.discord_api_req(
-                f'/channels/{a.json()["id"]}/messages',
-                "post",
-                data={"embeds": [embed.to_dict()]},
-            )
+        request_discord.discord_api_req(
+            f'/channels/{a.json()["id"]}/messages',
+            "post",
+            data={"embeds": [embed.to_dict(), naruto_img]},
+        )
         
         #In the vote log channel
         request_discord.discord_api_req(
