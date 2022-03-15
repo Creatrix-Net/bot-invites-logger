@@ -55,24 +55,19 @@ def message_me(voterid: int, site: str):
                          icon_url=list_dict[site])
         embed.set_thumbnail(url=user_pfp)
 
-        request_discord.discord_api_req(
-            f'/channels/{a.json()["id"]}/messages',
-            "post",
-            data={"embeds": [embed.to_dict()]},
-        )
         naruto_img = naruto_api()
         #DM
         if naruto_img[-1]:
             request_discord.discord_api_req(
                 f'/channels/{a.json()["id"]}/messages',
                 "post",
-                data={"embeds": [naruto_img[0], naruto_img[-1]]},
+                data={"embeds": [embed.to_dict(), naruto_img[0]]},
             )
         else:
             request_discord.discord_api_req(
                 f'/channels/{a.json()["id"]}/messages',
                 "post",
-                data={"embeds": [naruto_img[0]]},
+                data={"embeds": [embed.to_dict()]},
             )
         
         #In the vote log channel
