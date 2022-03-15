@@ -79,7 +79,6 @@ def message_me(voterid: int, site: str):
             data={"embed": embed.to_dict()},
         )
     except Exception as e:
-        print(e)
         request_discord.discord_api_req(
             f"/channels/{settings.CHANNEL_ID}/messages",
             "post",
