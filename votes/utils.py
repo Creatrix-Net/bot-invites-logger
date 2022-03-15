@@ -41,14 +41,13 @@ site_dict = {
 def message_me(voterid: int, site: str):
     IST = pytz.timezone("Asia/Kolkata")
     try:
-        a = request_discord.discord_api_req(
-            "/users/@me/channels", "post", data={"recipient_id": int(voterid)})
+        a = request_discord.discord_api_req("/users/@me/channels", "post", data={"recipient_id": int(voterid)})
         json = a.json()
         user_pfp = f'https://cdn.discordapp.com/avatars/{voterid}/{json["recipients"][0]["avatar"]}.gif?size=1024'
         embed = Embed(
             title=f"Thanks for voting me! on {site}",
             color=Color.random(),
-            description=f'Thanks **<@!{json["recipients"][0]["id"]}>** ({json["recipients"][0]["username"]}#{json["recipients"][0]["discriminator"]}) for voting me! :heart: <:thumbsupnaruto:848961695715819561><:smilenaruto:848961696047300649>',
+            description=f'Thanks **<@!{json["recipients"][0]["id"]}>** ({json["recipients"][0]["username"]}#{json["recipients"][0]["discriminator"]}) for voting me! :heart: <:uzumaki:940993645593632808>',
             timestamp=datetime.now(IST),
         )
         embed.set_author(name=site,
@@ -59,24 +58,28 @@ def message_me(voterid: int, site: str):
         request_discord.discord_api_req(
             f'/channels/{a.json()["id"]}/messages',
             "post",
-            data={"embed": embed.to_dict()},
+            data={"embeds": [embed.to_dict()]},
         )
         naruto_img = naruto_api()
-        request_discord.discord_api_req(
-            f'/channels/{a.json()["id"]}/messages',
-            "post",
-            data={"embed": naruto_img[0]},
-        )
+        #DM
         if naruto_img[-1]:
             request_discord.discord_api_req(
                 f'/channels/{a.json()["id"]}/messages',
                 "post",
-                data={"content": naruto_img[-1]},
+                data={"embeds": [naruto_img[0], naruto_img[-1]]},
             )
+        else:
+            request_discord.discord_api_req(
+                f'/channels/{a.json()["id"]}/messages',
+                "post",
+                data={"embeds": [naruto_img[0]]},
+            )
+        
+        #In the vote log channel
         request_discord.discord_api_req(
             f"/channels/{settings.CHANNEL_ID}/messages",
             "post",
-            data={"embed": embed.to_dict()},
+            data={"embeds": [embed.to_dict()]},
         )
     except Exception as e:
         request_discord.discord_api_req(
