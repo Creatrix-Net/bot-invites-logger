@@ -5,7 +5,6 @@ from .views import *
 urlpatterns = [
     path("topgg/", topgg, name="Top.GG"),
     path("discordbotlist/", discordbotlist, name="Discord Bot List"),
-    path("discordboats/", discordboats, name="Discord Boats"),
     path("botsfordiscord/", botsfordiscord, name="Bots For Discord"),
     path("discordlistspace/", discordlistspace, name="Discordlist Space"),
     path("fateslist/", fateslist, name="Fates List"),
@@ -13,4 +12,5 @@ urlpatterns = [
     path("voidbots/", voidbots, name="Void Bots"),
     path("infinity/", infinity, name="Infinity"),
     path("discordlabs/", discordlabs, name="Discord Labs"),
+    path("radarbotdirectory/", radarbotdirectory, name="Radar Bot Directory"),
 ]
