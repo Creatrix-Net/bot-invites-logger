@@ -174,10 +174,23 @@ def radarbotdirectory(request):
 @sync_to_async
 @require_POST
 def blist(request):
+    print(request.POST)
     userid = (
         request.POST.get("user") or 
         ast.literal_eval(request.body.decode("utf-8")).get("user") or 
         json.loads(request.body.decode("utf-8")).get("user")
     )
-    message_me(int(userid), "Radar Bot Directory")
+    message_me(int(userid), "Blist")
+    return HttpResponse("Thanks")
+
+@sync_to_async
+@require_POST
+def botlistme(request):
+    print(request.POST)
+    userid = (
+        request.POST.get("user") or 
+        ast.literal_eval(request.body.decode("utf-8")).get("user") or 
+        json.loads(request.body.decode("utf-8")).get("user")
+    )
+    message_me(int(userid), "Blist")
     return HttpResponse("Thanks")
