@@ -204,8 +204,7 @@ def botlistme(request):
 @require_POST
 def motiondevelopment(request):
     # Password not done because the thing not properly documented
-    print(request.body.decode("utf-8"), requests.utils.unquote(request.body.decode("utf-8")))
-    request_body = requests.utils.unquote(request.body.decode("utf-8")).split()
+    request_body = request.body.decode("utf-8").split('&')
     for i in request_body:
         if i.split('=')[0] == 'user_id':
             message_me(int(i.split('=')[-1]), "Motiondevelopment")
