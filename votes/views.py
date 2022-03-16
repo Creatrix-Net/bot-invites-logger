@@ -217,8 +217,8 @@ def motiondevelopment(request):
 def rovel(request):
     userid = (
         request.POST.get("user") or 
-        ast.literal_eval(request.body.decode("utf-8")).get("user") or 
-        json.loads(request.body.decode("utf-8")).get("user")
+        json.loads(request.body.decode("utf-8")).get("user") or
+        ast.literal_eval(request.body.decode("utf-8")).get("user") 
     )
     message_me(int(userid.get('id')), "Rovelstars")
     return HttpResponse("Thanks")
