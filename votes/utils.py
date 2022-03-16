@@ -46,7 +46,7 @@ site_dict = {
     "Discord Services": f"https://discordservices.net/bot/{settings.DISCORDBOTID}",
     "Discordz": f"https://discordz.xyz/bot/{settings.DISCORDBOTID}",
 
-    "LOCAL": "https://i.imgur.com/oQy9h2M.jpeg",
+    "LOCAL": "https://minato-namikaze.readthedocs.io/",
 }
 
 
