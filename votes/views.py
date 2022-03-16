@@ -1,5 +1,5 @@
 import ast
-import json
+import json, requests
 
 from asgiref.sync import sync_to_async
 from django.conf import settings
@@ -185,22 +185,33 @@ def blist(request):
 @sync_to_async
 @require_POST
 def botlistme(request):
-    userid = (
-        request.POST.get("user") or 
-        ast.literal_eval(request.body.decode("utf-8")).get("user") or 
-        json.loads(request.body.decode("utf-8")).get("user")
-    )
-    message_me(int(userid), "Botlist Me")
-    return HttpResponse("Thanks")
+    if (
+        request.META["HTTP_AUTHORIZATION"] or 
+        request.headers.get("Authorization") == settings.PASSWORD
+    ):
+        userid = (
+            request.POST.get("user") or 
+            ast.literal_eval(request.body.decode("utf-8")).get("user") or 
+            json.loads(request.body.decode("utf-8")).get("user")
+        )
+        message_me(int(userid), "Botlist Me")
+        return HttpResponse("Thanks")
+    else:
+        return HttpResponseNotAllowed(["GET", "POST"])
 
 
 @sync_to_async
 @require_POST
 def motiondevelopment(request):
-    userid = (
-        request.POST.get("user_id") or 
-        ast.literal_eval(request.body.decode("utf-8")).get("user_id") or 
-        json.loads(request.body.decode("utf-8")).get("user_id")
-    )
-    message_me(int(userid), "Motiondevelopment")
-    return HttpResponse("Thanks")
+    if (
+        request.META["HTTP_AUTHORIZATION"] or 
+        request.headers.get("Authorization") == settings.PASSWORD
+    ):
+        request.body.decode("utf-8")
+        request_body = requests.utils.unquote(request.body.decode("utf-8")).split()
+        for i in request_body:
+            if i.split('=')[0] == 'user_id':
+                message_me(int(i.split('=')[-1]), "Motiondevelopment")
+                return HttpResponse("Thanks")
+    else:
+        return HttpResponseNotAllowed(["GET", "POST"])
