@@ -41,6 +41,7 @@ def message_me(voterid: int, site: str):
     try:
         a = request_discord.discord_api_req("/users/@me/channels", "post", data={"recipient_id": int(voterid)})
         json = a.json()
+        print(json)
         user_pfp = f'https://cdn.discordapp.com/avatars/{voterid}/{json["recipients"][0]["avatar"]}.gif?size=1024'
         embed = Embed(
             title=f"Thanks for voting me! on {site}",
