@@ -196,7 +196,7 @@ def botlistme(request):
 
 @sync_to_async
 @require_POST
-def botlistme(request):
+def motiondevelopment(request):
     print(request.POST, request.body.decode("utf-8"))
     userid = (
         request.POST.get("user") or 
