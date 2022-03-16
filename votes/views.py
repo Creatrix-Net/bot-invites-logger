@@ -222,3 +222,20 @@ def rovel(request):
     )
     message_me(int(userid.get('id')), "Rovelstars")
     return HttpResponse("Thanks")
+
+@sync_to_async
+@require_POST
+def discordservices(request):
+    if (
+        request.META.get("HTTP_AUTHORIZATION") or 
+        request.headers.get("Authorization") == settings.PASSWORD
+    ):
+        userid = (
+            request.POST.get("user") or 
+            json.loads(request.body.decode("utf-8")).get("user") or
+            ast.literal_eval(request.body.decode("utf-8")).get("user")
+        )
+        message_me(int(userid.get('id')), "Discord Services")
+        return HttpResponse("Thanks")
+    else:
+        return HttpResponseNotAllowed(["GET", "POST"])
