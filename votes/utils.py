@@ -47,7 +47,7 @@ def message_me(voterid: int, site: str):
         embed = Embed(
             title=f"Thanks for voting me! on {site}",
             color=Color.random(),
-            description=f'Thanks **<@!{json["recipients"][0]["id"]}>** ({json["recipients"][0]["username"]}#{json["recipients"][0]["discriminator"]}) for voting me! :heart: <:uzumaki:940993645593632808>',
+            description=f'Thanks **<@!{json["recipients"][0]["id"]}>** (`{json["recipients"][0]["username"]}#{json["recipients"][0]["discriminator"]}`) for voting me! :heart: <:uzumaki:940993645593632808>',
             timestamp=datetime.now(IST),
         )
         embed.set_author(name=site,
