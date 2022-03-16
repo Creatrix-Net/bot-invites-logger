@@ -201,16 +201,11 @@ def botlistme(request):
 
 
 @sync_to_async
+@require_POST
 def motiondevelopment(request):
-    if (
-        request.META.get("HTTP_AUTHORIZATION") or 
-        request.headers.get("Authorization") == settings.PASSWORD
-    ):
-        request.body.decode("utf-8")
-        request_body = requests.utils.unquote(request.body.decode("utf-8")).split()
-        for i in request_body:
-            if i.split('=')[0] == 'user_id':
-                message_me(int(i.split('=')[-1]), "Motiondevelopment")
-                return HttpResponse("Thanks")
-    else:
-        return HttpResponseNotAllowed(["GET", "POST"])
+    # Password not done because the thing not properly documented
+    request_body = requests.utils.unquote(request.body.decode("utf-8")).split()
+    for i in request_body:
+        if i.split('=')[0] == 'user_id':
+            message_me(int(i.split('=')[-1]), "Motiondevelopment")
+            return HttpResponse("Thanks")
