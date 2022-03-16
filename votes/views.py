@@ -167,5 +167,5 @@ def radarbotdirectory(request):
         ast.literal_eval(request.body.decode("utf-8")).get("user") or 
         json.loads(request.body.decode("utf-8")).get("user")
     )
-    message_me(int(userid), "Discord Labs")
+    message_me(int(userid), "Radar Bot Directory")
     return HttpResponse("Thanks")

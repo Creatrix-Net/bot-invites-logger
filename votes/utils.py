@@ -18,6 +18,7 @@ list_dict = {
     "Void Bots": "https://voidbots.net/assets/img/logo.png",
     "Infinity": "https://i.imgur.com/d7rG4HS.png",
     "Discord Labs":"https://cdn.discordlabs.org/logo200.png",
+    "Radar Bot Directory": "https://mcfacts.xyz/Images/RBD/botlistlogo.png",
 
     "LOCAL": "https://i.imgur.com/vlBPK30.png",
 }
@@ -31,6 +32,7 @@ site_dict = {
     "Void Bots": f"https://voidbots.net/bot/{settings.DISCORDBOTID}/",
     "Infinity": f"https://botlist.site/bots/{settings.DISCORDBOTID}",
     "Discord Labs":f"https://bots.discordlabs.org/bot/{settings.DISCORDBOTID}",
+    "Radar Bot Directory": f"https://radarbotdirectory.xyz/bot/{settings.DISCORDBOTID}",
 
     "LOCAL": "https://i.imgur.com/oQy9h2M.jpeg",
 }
