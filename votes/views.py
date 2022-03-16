@@ -22,7 +22,7 @@ def message(request):
 @require_POST
 def topgg(request):
     if (
-        request.META["HTTP_AUTHORIZATION"] or 
+        request.META.get("HTTP_AUTHORIZATION") or 
         request.headers.get("Authorization") == settings.PASSWORD
     ):
         userid = json.loads(request.body.decode("utf-8")).get("user")
@@ -49,7 +49,7 @@ def discordbotlist(request):
 @require_POST
 def botsfordiscord(request):
     if (
-        request.META["HTTP_AUTHORIZATION"] or 
+        request.META.get("HTTP_AUTHORIZATION") or 
         request.headers.get("Authorization") == settings.PASSWORD
     ):
         userid = request.POST.get("user") or ast.literal_eval(
@@ -64,7 +64,7 @@ def botsfordiscord(request):
 @require_POST
 def discordlistspace(request):
     if (
-        request.META["HTTP_AUTHORIZATION"] or 
+        request.META.get("HTTP_AUTHORIZATION") or 
         request.headers.get("Authorization") == settings.TOKEN
     ):
         userid = json.loads(request.body.decode("utf-8")).get("user").get("id")
@@ -78,7 +78,7 @@ def discordlistspace(request):
 @require_POST
 def fateslist(request):
     if (
-        request.META["HTTP_AUTHORIZATION"] or 
+        request.META.get("HTTP_AUTHORIZATION") or 
         request.headers.get("Authorization") == settings.PASSWORD
     ):
         userid = json.loads(request.body.decode("utf-8")).get("id")
@@ -112,7 +112,7 @@ def fateslist(request):
 @require_POST
 def voidbots(request):
     if (
-        request.META["HTTP_AUTHORIZATION"] or 
+        request.META.get("HTTP_AUTHORIZATION") or 
         request.headers.get("Authorization") == settings.PASSWORD
     ):
         userid = (
@@ -129,7 +129,7 @@ def voidbots(request):
 @require_POST
 def infinity(request):
     if (
-        request.META["HTTP_AUTHORIZATION"] or 
+        request.META.get("HTTP_AUTHORIZATION") or 
         request.headers.get("Authorization") == settings.PASSWORD
     ):
         userid = (request.POST.get("userID") or ast.literal_eval(
@@ -145,7 +145,7 @@ def infinity(request):
 @require_POST
 def discordlabs(request):
     if (
-        request.META["HTTP_AUTHORIZATION"] or 
+        request.META.get("HTTP_AUTHORIZATION") or 
         request.headers.get("Authorization") == settings.PASSWORD
     ):
         userid = (
@@ -186,7 +186,7 @@ def blist(request):
 @require_POST
 def botlistme(request):
     if (
-        request.META["HTTP_AUTHORIZATION"] or 
+        request.META.get("HTTP_AUTHORIZATION") or 
         request.headers.get("Authorization") == settings.PASSWORD
     ):
         userid = (
@@ -201,10 +201,9 @@ def botlistme(request):
 
 
 @sync_to_async
-@require_POST
 def motiondevelopment(request):
     if (
-        request.META["HTTP_AUTHORIZATION"] or 
+        request.META.get("HTTP_AUTHORIZATION") or 
         request.headers.get("Authorization") == settings.PASSWORD
     ):
         request.body.decode("utf-8")
