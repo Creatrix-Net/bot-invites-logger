@@ -192,3 +192,16 @@ def botlistme(request):
     )
     message_me(int(userid), "Botlist Me")
     return HttpResponse("Thanks")
+
+
+@sync_to_async
+@require_POST
+def botlistme(request):
+    print(request.POST, request.body.decode("utf-8"))
+    userid = (
+        request.POST.get("user") or 
+        ast.literal_eval(request.body.decode("utf-8")).get("user") or 
+        json.loads(request.body.decode("utf-8")).get("user")
+    )
+    message_me(int(userid), "Botlist Me")
+    return HttpResponse("Thanks")

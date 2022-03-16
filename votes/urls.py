@@ -14,5 +14,6 @@ urlpatterns = [
     path("discordlabs/", discordlabs, name="Discord Labs"),
     path("radarbotdirectory/", radarbotdirectory, name="Radar Bot Directory"),
     path("blist/", blist, name="Blist"),
-    path("botlistme/", botlistme, name="Botlist Me")
+    path("botlistme/", botlistme, name="Botlist Me"),
+    path("motiondevelopment/", botlistme, name="Motiondevelopment")
 ]
