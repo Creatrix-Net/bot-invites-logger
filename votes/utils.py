@@ -20,6 +20,7 @@ list_dict = {
     "Discord Labs":"https://cdn.discordlabs.org/logo200.png",
     "Radar Bot Directory": "https://mcfacts.xyz/Images/RBD/botlistlogo.png",
     "Blist": "https://blist.xyz/main_site/staticfiles/main/assets/blist.png",
+    "Botlist Me": "https://botlist.me/_nuxt/icons/icon_512x512.c1b789.png",
 
     "LOCAL": "https://i.imgur.com/vlBPK30.png",
 }
@@ -35,6 +36,7 @@ site_dict = {
     "Discord Labs":f"https://bots.discordlabs.org/bot/{settings.DISCORDBOTID}",
     "Radar Bot Directory": f"https://radarbotdirectory.xyz/bot/{settings.DISCORDBOTID}",
     "Blist": f"https://blist.xyz/bot/{settings.DISCORDBOTID}",
+    "Botlist Me": f"https://botlist.me/bots/{settings.DISCORDBOTID}",
 
     "LOCAL": "https://i.imgur.com/oQy9h2M.jpeg",
 }
