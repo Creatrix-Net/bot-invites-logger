@@ -24,6 +24,7 @@ list_dict = {
     "Motiondevelopment": "https://motiondevelopment.top/favicon.ico",
     "Rovelstars": "https://discord.rovelstars.com/assets/img/bot/logo-512.png",
     "Discord Services": "https://discordservices.net/icon.webp",
+    "Discordz": "https://cdn.discordz.xyz/img/logo.png",
 
     "LOCAL": "https://i.imgur.com/vlBPK30.png",
 }
@@ -43,6 +44,7 @@ site_dict = {
     "Motiondevelopment": f"https://motiondevelopment.top/bots/{settings.DISCORDBOTID}",
     "Rovelstars": f'https://discord.rovelstars.com/bots/{settings.DISCORDBOTID}',
     "Discord Services": f"https://discordservices.net/bot/{settings.DISCORDBOTID}",
+    "Discordz": f"https://discordz.xyz/bot/{settings.DISCORDBOTID}",
 
     "LOCAL": "https://i.imgur.com/oQy9h2M.jpeg",
 }

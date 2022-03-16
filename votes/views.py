@@ -243,17 +243,16 @@ def discordservices(request):
 @sync_to_async
 @require_POST
 def discordz(request):
-    print(request.POST, request.body.decode("utf-8"))
     if (
         request.META.get("HTTP_AUTHORIZATION") or 
         request.headers.get("Authorization") == settings.PASSWORD
     ):
         userid = (
-            request.POST.get("user") or 
-            json.loads(request.body.decode("utf-8")).get("user") or
-            ast.literal_eval(request.body.decode("utf-8")).get("user")
+            request.POST.get("voter") or 
+            json.loads(request.body.decode("utf-8")).get("voter") or
+            ast.literal_eval(request.body.decode("utf-8")).get("voter")
         )
-        message_me(int(userid.get('id')), "Discord Services")
+        message_me(int(userid), "Discordz")
         return HttpResponse("Thanks")
     else:
         return HttpResponseNotAllowed(["GET", "POST"])
