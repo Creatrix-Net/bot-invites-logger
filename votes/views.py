@@ -169,3 +169,15 @@ def radarbotdirectory(request):
     )
     message_me(int(userid), "Radar Bot Directory")
     return HttpResponse("Thanks")
+
+
+@sync_to_async
+@require_POST
+def blist(request):
+    userid = (
+        request.POST.get("user") or 
+        ast.literal_eval(request.body.decode("utf-8")).get("user") or 
+        json.loads(request.body.decode("utf-8")).get("user")
+    )
+    message_me(int(userid), "Radar Bot Directory")
+    return HttpResponse("Thanks")

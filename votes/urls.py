@@ -13,4 +13,5 @@ urlpatterns = [
     path("infinity/", infinity, name="Infinity"),
     path("discordlabs/", discordlabs, name="Discord Labs"),
     path("radarbotdirectory/", radarbotdirectory, name="Radar Bot Directory"),
+    path("blist/", blist, name="Blist"),
 ]

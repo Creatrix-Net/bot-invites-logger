@@ -19,6 +19,7 @@ list_dict = {
     "Infinity": "https://i.imgur.com/d7rG4HS.png",
     "Discord Labs":"https://cdn.discordlabs.org/logo200.png",
     "Radar Bot Directory": "https://mcfacts.xyz/Images/RBD/botlistlogo.png",
+    "Blist": "https://blist.xyz/main_site/staticfiles/main/assets/blist.png",
 
     "LOCAL": "https://i.imgur.com/vlBPK30.png",
 }
@@ -33,6 +34,7 @@ site_dict = {
     "Infinity": f"https://botlist.site/bots/{settings.DISCORDBOTID}",
     "Discord Labs":f"https://bots.discordlabs.org/bot/{settings.DISCORDBOTID}",
     "Radar Bot Directory": f"https://radarbotdirectory.xyz/bot/{settings.DISCORDBOTID}",
+    "Blist": f"https://blist.xyz/bot/{settings.DISCORDBOTID}",
 
     "LOCAL": "https://i.imgur.com/oQy9h2M.jpeg",
 }
