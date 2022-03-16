@@ -6,6 +6,7 @@ Or in short: `This app implements the invite tracking and votes webhook of diffe
 ***
 
 #### List of supported `BotLists`
+``Will be updated soon``
 - [Top.gg](https://top.gg/)
 - [VoidBots](https://voidbots.net/)
 - [BladeList.gg](https://bladelist.gg/)

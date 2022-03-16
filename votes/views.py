@@ -1,5 +1,5 @@
 import ast
-import json, requests
+import json
 
 from asgiref.sync import sync_to_async
 from django.conf import settings
@@ -209,3 +209,16 @@ def motiondevelopment(request):
         if i.split('=')[0] == 'user_id':
             message_me(int(i.split('=')[-1]), "Motiondevelopment")
             return HttpResponse("Thanks")
+    return HttpResponseNotAllowed(["GET", "POST"])
+
+
+@sync_to_async
+@require_POST
+def rovel(request):
+    userid = (
+        request.POST.get("user") or 
+        ast.literal_eval(request.body.decode("utf-8")).get("user") or 
+        json.loads(request.body.decode("utf-8")).get("user")
+    )
+    message_me(int(userid.get('id')), "Rovelstars")
+    return HttpResponse("Thanks")

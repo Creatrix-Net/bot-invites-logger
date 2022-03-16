@@ -15,5 +15,6 @@ urlpatterns = [
     path("radarbotdirectory/", radarbotdirectory, name="Radar Bot Directory"),
     path("blist/", blist, name="Blist"),
     path("botlistme/", botlistme, name="Botlist Me"),
-    path("motiondevelopment/", motiondevelopment, name="Motiondevelopment")
+    path("motiondevelopment/", motiondevelopment, name="Motiondevelopment"),
+    path("rovelstars/", rovel, name="Rovel Stars"),
 ]
