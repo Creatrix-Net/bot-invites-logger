@@ -21,6 +21,7 @@ list_dict = {
     "Radar Bot Directory": "https://mcfacts.xyz/Images/RBD/botlistlogo.png",
     "Blist": "https://blist.xyz/main_site/staticfiles/main/assets/blist.png",
     "Botlist Me": "https://botlist.me/_nuxt/icons/icon_512x512.c1b789.png",
+    "Motiondevelopment": "https://motiondevelopment.top/favicon.ico",
 
     "LOCAL": "https://i.imgur.com/vlBPK30.png",
 }
@@ -37,6 +38,7 @@ site_dict = {
     "Radar Bot Directory": f"https://radarbotdirectory.xyz/bot/{settings.DISCORDBOTID}",
     "Blist": f"https://blist.xyz/bot/{settings.DISCORDBOTID}",
     "Botlist Me": f"https://botlist.me/bots/{settings.DISCORDBOTID}",
+    "Motiondevelopment": f"https://motiondevelopment.top/bots/{settings.DISCORDBOTID}",
 
     "LOCAL": "https://i.imgur.com/oQy9h2M.jpeg",
 }

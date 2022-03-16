@@ -197,11 +197,10 @@ def botlistme(request):
 @sync_to_async
 @require_POST
 def motiondevelopment(request):
-    print(request.POST, request.body.decode("utf-8"))
     userid = (
-        request.POST.get("user") or 
-        ast.literal_eval(request.body.decode("utf-8")).get("user") or 
-        json.loads(request.body.decode("utf-8")).get("user")
+        request.POST.get("user_id") or 
+        ast.literal_eval(request.body.decode("utf-8")).get("user_id") or 
+        json.loads(request.body.decode("utf-8")).get("user_id")
     )
-    message_me(int(userid), "Botlist Me")
+    message_me(int(userid), "Motiondevelopment")
     return HttpResponse("Thanks")
