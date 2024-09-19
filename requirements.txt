@@ -21,7 +21,7 @@ pytz==2021.3
 requests==2.32.2
 sqlparse==0.4.2
 tzdata==2024.1
-urllib3==1.26.8
+urllib3==1.26.19
 uvicorn==0.17.6
 whitenoise==6.5.0
 yarl==1.7.2
